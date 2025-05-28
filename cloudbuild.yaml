@@ -1,0 +1,33 @@
+steps:
+  # Step 1: Install dependencies
+  - name: 'gcr.io/cloud-builders/composer'
+    entrypoint: 'composer'
+    args: ['install', '--no-dev', '--optimize-autoloader']
+
+  # Step 2: Build Docker image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/laravel-app', '.']
+
+  # Step 3: Push to Container Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/laravel-app']
+
+  # Step 4 (optional): Deploy to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'deploy'
+      - 'laravel-app'
+      - '--image'
+      - 'gcr.io/$PROJECT_ID/laravel-app'
+      - '--platform'
+      - 'managed'
+      - '--region'
+      - 'asia-southeast2'
+      - '--allow-unauthenticated'
+      - '--port'
+      - '3306'
+
+images:
+  - 'gcr.io/$PROJECT_ID/laravel-app'

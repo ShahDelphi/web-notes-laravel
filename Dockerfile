@@ -40,6 +40,6 @@ RUN php artisan config:cache \
     && php artisan view:cache
 
 # Gunakan server bawaan Laravel (untuk Cloud Run bisa seperti ini)
-CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8080"]
+CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=3306"]
 
-EXPOSE 8080
+EXPOSE 3306
