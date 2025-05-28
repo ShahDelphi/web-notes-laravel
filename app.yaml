@@ -14,12 +14,12 @@ resources:
 
 env_variables:
   APP_ENV: production
-  APP_KEY: YOUR_APP_KEY
+  APP_KEY: base64:S5gwP7imfF3nUx6+KfCsboE8QeRSAbnAj/N5kMROTFw
   APP_DEBUG: false
   LOG_CHANNEL: stderr
   DB_CONNECTION: mysql
   DB_HOST: 34.55.111.115
   DB_PORT: 3306
-  DB_DATABASE: db_notes_cc
+  DB_DATABASE: db_notes_tcc
   DB_USERNAME: root
   DB_PASSWORD: 
